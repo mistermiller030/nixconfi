@@ -168,6 +168,8 @@ environment.etc."zshrc.local".text = ''
     gotests
     v4l-utils
     remmina
+    chromium
+    chromedriver
   ];
 
 
