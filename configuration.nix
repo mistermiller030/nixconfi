@@ -94,19 +94,7 @@
 
 programs.zsh = {
   enable = true;
-  promptInit = ''
-    source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-  '';
-  ohMyZsh = {
-    enable = true;
-    plugins = [ "git" "z" "sudo" ];
-  };
 };
-
-
-environment.etc."zshrc.local".text = ''
-  source ${pkgs.oh-my-zsh}/share/oh-my-zsh/themes/robbyrussell.zsh-theme
-'';
 
   # Aktivierung von Flatpak als Dienst (so geht’s richtig!)
   services.flatpak.enable = true;
@@ -132,11 +120,8 @@ environment.etc."zshrc.local".text = ''
     neovim
     neofetch
     brave
-    kitty
-    zsh
     curl
     fira-code-nerdfont
-    zsh-powerlevel10k
     usbutils
     pavucontrol
     vlc
