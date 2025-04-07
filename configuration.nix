@@ -131,7 +131,6 @@ environment.etc."zshrc.local".text = ''
     wget
     neovim
     neofetch
-    git
     brave
     kitty
     zsh
