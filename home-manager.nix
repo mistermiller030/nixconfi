@@ -5,7 +5,6 @@ _: { home-manager= {
     home.stateVersion = "24.11";
     imports = [./home.nix];
     
-    home.file.".zshrc".enable = false;
 
     };
 

@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   programs.git = {
       enable = true;
       userName = "david";
@@ -14,6 +14,10 @@ _: {
       # Die am häufigsten verwendeten Aliase
       shellAliases = {
       #ll = "ls -la --color=auto";
+      cat = "${pkgs.bat}/bin/bat";
+      ls = "${pkgs.eza}/bin/eza";
+      ll = "${pkgs.eza}/bin/eza --all --long --icons=always --git";
+
       update = "sudo nixos-rebuild switch --flake ~/git/nixconfi#nixos";
       #gs = "git status";
       };
