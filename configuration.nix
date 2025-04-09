@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -81,20 +81,25 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nixpc = {
-  isNormalUser = true;
-  description = "David Müller";
-  extraGroups = [ "networkmanager" "wheel" ];
-  shell = pkgs.zsh;
-};
+    isNormalUser = true;
+    description = "David Müller";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    shell = pkgs.zsh;
+  };
 
-programs.zsh = {
-  enable = true;
-};
+  programs.zsh = {
+    enable = true;
+  };
 
   # Aktivierung von Flatpak als Dienst (so geht’s richtig!)
   services.flatpak.enable = true;
@@ -102,10 +107,10 @@ programs.zsh = {
   # Wichtig für Wayland Screensharing
   xdg.portal.enable = true;
 
-  xdg.portal.extraPortals = [ 
-  pkgs.xdg-desktop-portal-gnome 
-  pkgs.xdg-desktop-portal-gtk
-];
+  xdg.portal.extraPortals = [
+    pkgs.xdg-desktop-portal-gnome
+    pkgs.xdg-desktop-portal-gtk
+  ];
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -129,8 +134,8 @@ programs.zsh = {
     xdg-desktop-portal-gtk
     vesktop
     gnomeExtensions.appindicator # für Status-Icons (empfohlen)
-    gnome-tweaks           # Gnome Tweaks (empfohlen)
-    gnome-extension-manager      # Der GNOME Extension Manager
+    gnome-tweaks # Gnome Tweaks (empfohlen)
+    gnome-extension-manager # Der GNOME Extension Manager
     ghostty
     python311
     python311Packages.py
@@ -156,16 +161,13 @@ programs.zsh = {
     chromedriver
   ];
 
+  services.udev.extraRules = ''
+    KERNEL=="video[0-9]*", MODE="0666"
+  '';
 
-services.udev.extraRules = ''
-  KERNEL=="video[0-9]*", MODE="0666"
-'';
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
-boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-
-boot.kernelModules = [ "v4l2loopback" ];
-
-
+  boot.kernelModules = [ "v4l2loopback" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -194,25 +196,28 @@ boot.kernelModules = [ "v4l2loopback" ];
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
+  # NVIDIA RTX 4090 Treiber und 4K-Support
+  services.xserver.videoDrivers = [ "nvidia" ];
 
-# NVIDIA RTX 4090 Treiber und 4K-Support
-services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia = {
+    modesetting.enable = true; # Aktiviert den Modesetting-Modus für bessere Kompatibilität
+    powerManagement.enable = true; # Aktiviert das Power-Management für Energieeffizienz
+    open = false; # Verwendet den proprietären NVIDIA-Treiber für optimale Leistung
+    package = config.boot.kernelPackages.nvidiaPackages.stable; # Stabile Treiberversion
+  };
 
-hardware.nvidia = {
-  modesetting.enable = true;          # Aktiviert den Modesetting-Modus für bessere Kompatibilität
-  powerManagement.enable = true;      # Aktiviert das Power-Management für Energieeffizienz
-  open = false;                       # Verwendet den proprietären NVIDIA-Treiber für optimale Leistung
-  package = config.boot.kernelPackages.nvidiaPackages.stable;  # Stabile Treiberversion
-};
+  hardware.graphics = {
+    enable = true; # Aktiviert die Grafikunterstützung
+    enable32Bit = true; # Unterstützt 32-Bit-Anwendungen
+  };
 
-hardware.graphics = {
-  enable = true;                      # Aktiviert die Grafikunterstützung
-  enable32Bit = true;                 # Unterstützt 32-Bit-Anwendungen
-};
-
-# (Optional) 4K-Auflösung erzwingen, falls benötigt:
-services.xserver.resolutions = [{ x = 3840; y = 2160; }];
-# für das rode mic
-
+  # (Optional) 4K-Auflösung erzwingen, falls benötigt:
+  services.xserver.resolutions = [
+    {
+      x = 3840;
+      y = 2160;
+    }
+  ];
+  # für das rode mic
 
 }
