@@ -10,12 +10,6 @@
     virtualHosts = {
       "n8n.david.ritter.family" = {
         useACMEHost = "n8n.david.ritter.family";
-        locations."/.well-known/acme-challenge/" = {
-          extraConfig = ''
-            rewrite /.well-known/acme-challenge/(.*) /$1 break;
-            root /var/lib/acme/.well-known/acme-challenge;
-          '';
-        };
         locations."/" = {
           proxyPass = "http://127.0.0.1:5678";
           recommendedProxySettings = true;
