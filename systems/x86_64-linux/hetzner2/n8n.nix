@@ -27,7 +27,7 @@
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = "admin@example.org";
+    defaults.email = "beneritter@gmail.com";
     certs."n8n.david.ritter.family" = {
       # An acme system user is created. This user belongs to the acme group and the home directory is /var/lib/acme.
       # This user will try to make the directory .well-known/acme-challenge/ under the webroot directory.
