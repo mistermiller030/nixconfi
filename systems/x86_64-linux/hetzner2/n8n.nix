@@ -1,7 +1,7 @@
 { ... }:
 {
   services.n8n = {
-    enable = false;
+    enable = true;
     openFirewall = true;
   };
 }
