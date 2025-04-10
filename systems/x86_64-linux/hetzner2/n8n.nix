@@ -5,6 +5,7 @@
     openFirewall = true;
   };
 
+systemd.services.n8n.environment.N8N_SECURE_COOKIE = "false";
   services.nginx = {
     enable = true;
     virtualHosts = {
