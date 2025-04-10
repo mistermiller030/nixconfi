@@ -9,6 +9,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disk-config.nix
+    ./n8n.nix
   ];
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -16,6 +17,9 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+
+  nixpkgs.config.allowUnfree = true;
+
   services.openssh.enable = true;
 
   services.comin = {
