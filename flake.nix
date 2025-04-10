@@ -38,7 +38,15 @@
           comin.nixosModules.comin
           ./systems/x86_64-linux/hetzner1/configuration.nix
         ];
+      };
 
+        nixosConfigurations.hetzner2 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          comin.nixosModules.comin
+          ./systems/x86_64-linux/hetzner2/configuration.nix
+        ];
       };
 
     };
