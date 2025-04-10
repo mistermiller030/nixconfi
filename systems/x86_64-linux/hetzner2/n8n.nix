@@ -9,7 +9,6 @@
     enable = true;
     virtualHosts = {
       "n8n.david.ritter.family" = {
-        onlySSL = true;
         useACMEHost = "n8n.david.ritter.family";
         locations."/.well-known/acme-challenge/" = {
           extraConfig = ''
@@ -37,6 +36,6 @@
 
   users.users.nginx.extraGroups = ["acme"];
 
-  networking.firewall.allowedTCPPorts = [ 443 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
 }
