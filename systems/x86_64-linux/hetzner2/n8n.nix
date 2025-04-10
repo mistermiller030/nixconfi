@@ -4,4 +4,18 @@
     enable = true;
     openFirewall = true;
   };
+
+  services.nginx = {
+    enable = true;
+    virtualHosts = {
+      "n8n.david.ritter.family" = {
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:5678";
+          recommendedProxySettings = true;
+        };
+      };
+    };
+  };
+  networking.firewall.allowedTCPPorts = [ 80 ];
+
 }
