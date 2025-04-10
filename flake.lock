@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "comin": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743839339,
+        "narHash": "sha256-7Tzs5NK9Ckvzlkgc5RE9QlgDtqkmAJTZpWGNmwP8fDI=",
+        "owner": "nlewo",
+        "repo": "comin",
+        "rev": "b382f74091f88795c5479b95b9bf7c2bb5156110",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nlewo",
+        "repo": "comin",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -58,6 +78,7 @@
     },
     "root": {
       "inputs": {
+        "comin": "comin",
         "disko": "disko",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
