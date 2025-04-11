@@ -31,6 +31,13 @@
           ./systems/x86_64-linux/nixos/configuration.nix
         ];
       };
+nixosConfigurations.thinkpad = nixpkgs.lib.nixosSystem {
+  system = "x86_64-linux";
+  modules = [
+    home-manager.nixosModules.home-manager
+    ./systems/x86_64-linux/thinkpad/configuration.nix
+  ];
+};
       nixosConfigurations.hetzner1 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
