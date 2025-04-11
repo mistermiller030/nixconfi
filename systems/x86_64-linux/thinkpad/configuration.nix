@@ -60,7 +60,7 @@
   services.xserver.libinput.enable = true;
 
   # Define your user account
-  users.users.david = {
+  users.users.mistermiller= {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio" ];
     initialPassword = "changeme";  # Remember to change this after first login
@@ -68,13 +68,13 @@
 
   # Enable ZSH
   programs.zsh.enable = true;
-  users.users.david.shell = pkgs.zsh;
+  users.users.mistermiller.shell = pkgs.zsh;
 
   # Home Manager configuration
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.david = {
+    users.mistermiller= {
       home.stateVersion = "24.11";
       # We'll set this up after the initial installation
     };
