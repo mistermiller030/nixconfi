@@ -57,4 +57,34 @@
       };
     };
   };
+
+# VSCode mit Python-Unterstützung und grundlegenden Einstellungen
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode;
+    
+    # Python-Erweiterung
+    extensions = with pkgs.vscode-extensions; [
+      ms-python.python
+    ];
+    
+    # Grundlegende Einstellungen
+    userSettings = {
+      # Editor-Einstellungen
+      "editor.tabSize" = 4;
+      "editor.insertSpaces" = true;
+      "editor.wordWrap" = "on";
+      
+      # Python-spezifische Einstellungen
+      "python.defaultInterpreterPath" = "${pkgs.python313}/bin/python3";
+      "python.analysis.typeCheckingMode" = "basic";
+      
+      # Dateityp-spezifische Einstellungen
+      "[python]" = {
+        "editor.formatOnSave" = true;
+        "editor.tabSize" = 4;
+      };
+    };
+  };
+
 }

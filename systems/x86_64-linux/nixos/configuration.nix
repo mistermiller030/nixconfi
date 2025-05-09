@@ -136,26 +136,11 @@
     gnome-tweaks # Gnome Tweaks (empfohlen)
     gnome-extension-manager # Der GNOME Extension Manager
     ghostty
-    python311
-    python311Packages.py
-    python311Packages.setuptools
     ripgrep
     nodejs
     fd
     gcc
     wl-clipboard
-    #go-bereich
-    go
-    gopls
-    golangci-lint
-    delve
-    go-tools
-    gofumpt
-    gomodifytags
-    impl
-    gotests
-    v4l-utils
-    remmina
     chromium
     chromedriver
   ];
